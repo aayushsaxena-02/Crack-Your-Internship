@@ -1,3 +1,30 @@
+#Approach 3 : T.c -> O(n)  // Best Approach ( Here we just need the middle element of array hence we will use
+quickSelect Method and partial Sort it Hence this reduces the T.c. [This we can achieve using nth_element() func].
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        int moves = 0;
+        nth_element(nums.begin(),nums.begin()+nums.size()/2,nums.end());
+        for(int i = 0; i < nums.size(); i++) moves += abs(nums[nums.size()/2]-nums[i]);
+        return moves;
+    }
+};
+
+#Approach 2 : T.c -> O(nlogn)
+
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        int moves = 0;
+        sort(nums.begin(),nums.end());
+        for(int i = 0; i < nums.size()/2; i++) moves += nums[nums.size()-i-1]-nums[i];
+        return moves;
+    }
+};
+
+#Approach 1 : T.c -> O(nlogn)
+
 class Solution {
 public:
     int minMoves2(vector<int>& nums) {
