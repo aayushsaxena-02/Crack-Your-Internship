@@ -1,3 +1,5 @@
+There one more Approach that solves in O(logn) using Matrix multiplication and some observation.
+
 # Approach 1
 T.c -> O(n) , S.c -> O(1)
 
