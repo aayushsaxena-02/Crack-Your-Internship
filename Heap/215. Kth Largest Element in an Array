@@ -1,0 +1,15 @@
+T.c -> O(n + klogk) , S.c -> O(k)
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        priority_queue <int,vector<int>,greater<int>> pq;
+        int i = 0;
+        while(i < k) pq.push(nums[i++]);
+        while(i < nums.size()){
+            int top = pq.top();pq.pop();
+            pq.push(max(top,nums[i++]));
+        }
+        return pq.top();
+    }
+};
