@@ -1,0 +1,12 @@
+T.c -> O(nlogn) , S.c -> O(1)
+
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        sort(nums.begin(),nums.end());
+        if(nums.size() == 3 || nums[0] >= 0 || nums.back() < 0) 
+            return nums.back()*1LL*nums[nums.size()-2]*1LL*nums[nums.size()-3];
+
+        return max(nums[0]*1LL*nums[1]*1LL*nums.back(),nums.back()*1LL*nums[nums.size()-2]*1LL*nums[nums.size()-3]);
+    }
+};
