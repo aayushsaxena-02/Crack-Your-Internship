@@ -1,0 +1,25 @@
+T.c -> O(n) , S.c -> O(n)
+
+class Solution {
+public:
+    int maxProfit(vector<int>& p) {
+        int buyProfit = 0, sellProfit = 0;
+
+        sellProfit = p.back();
+        for(int i = p.size()-2; i >= 0; i--){
+            for(int j = 0; j <= 1; j++){
+                if(j == 0){
+                    int buy = sellProfit-p[i];
+                    int notBuy = buyProfit;
+                    buyProfit = max(buy,notBuy);
+                }else{
+                    int sell = buyProfit + p[i];
+                    int notSell = sellProfit;
+                    sellProfit = max(sell,notSell);
+                }
+            }
+        }
+
+        return buyProfit;
+    }
+};
