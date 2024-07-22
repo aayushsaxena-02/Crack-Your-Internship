@@ -1,0 +1,32 @@
+T.c -> O(n3) , S.c -> O(1)
+
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int t) {
+        vector<vector<int>> ans;
+        sort(nums.begin(),nums.end());   
+
+        for(int i = 0; i < nums.size(); i++){
+            while(i > 0 && i < nums.size() && nums[i] == nums[i-1]) i++;
+            for(int j = i+1; j < nums.size(); j++){
+                while(j > i+1 && j < nums.size() && nums[j] == nums[j-1]) j++;
+                int k = j+1 , l = nums.size()-1;
+                while(k < l){
+                    long long int val = nums[k] + nums[l], tt = t-nums[i];
+                    tt -= nums[j];
+                    if(val == tt) {
+                        ans.push_back({nums[i],nums[j],nums[k],nums[l]});
+                        k++;
+                        l--;
+                        while(k < nums.size() && nums[k] == nums[k-1]) k++;
+                        while(l >= 0 && nums[l] == nums[l+1]) l--;
+                    }
+                    else if(val < tt) k++;
+                    else l--;
+                }
+            }
+        }
+
+        return ans;
+    }
+};
