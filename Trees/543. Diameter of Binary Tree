@@ -1,0 +1,20 @@
+T.c -> O(n)
+
+class Solution {
+public:
+    pair<int,int> solve(TreeNode* root){
+        if(!root) return {0,0};
+
+        auto l = solve(root->left);
+        auto r = solve(root->right);
+        
+        pair<int,int> ans;
+        ans.first = max(l.first,r.first)+1;
+        ans.second = max(l.first+r.first+1,max(l.second,r.second));
+        return ans;
+    }
+
+    int diameterOfBinaryTree(TreeNode* root) {
+        return solve(root).second-1;
+    }
+};
