@@ -1,0 +1,14 @@
+T.c -> O(amount*n) , S.c -> O(amount)
+
+class Solution {
+public:
+    int coinChange(vector<int>& c, int amount) {
+        vector<long long int> dp(amount+1,INT_MAX);
+        dp[0] = 0;
+        for(int i = 1; i <= amount; i++){
+            for(int j = 0; j < c.size(); j++) dp[i] = min(dp[i],i >= c[j] ? dp[i-c[j]]+1LL: INT_MAX);
+        }
+
+        return dp[amount] != INT_MAX ? dp[amount] : -1;
+    }
+};
