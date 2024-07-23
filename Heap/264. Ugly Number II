@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+        priority_queue <int,vector<int>,greater<int>> pq;
+        long long int num = 1;
+        for(int i = 0; i <= 31; i++){
+            if(i > 0) num = num*1LL*2;
+            long long int v1 = num;
+            for(int j = 0; j <= 31; j++){
+                if(j > 0) v1 = v1*1LL*3;
+                if(v1 > INT_MAX) break;
+                long long int v2 = v1;
+                for(int k = 0; k <= 31; k++){
+                    if(k > 0) v2 = v2*1LL*5;
+                    if(v2 < INT_MAX) pq.push(v2);
+                    else break;
+                }
+            }
+        }
+
+        while(--n) {
+            cout<<pq.top()<<" ";
+            pq.pop();
+        }
+        return pq.top();
+    }
+};
