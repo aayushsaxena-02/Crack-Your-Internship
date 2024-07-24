@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int solve(vector<string>& strs,int i,int m,int n,vector<vector<vector<int>>> &dp){
+        if(m < 0 || n < 0) return -1e8;
+        if(i == strs.size()) return 0;
+        if(dp[i][m][n] != -1) return dp[i][m][n];
+
+        int c = 0;
+        int excl = solve(strs,i+1,m,n,dp);
+        
+        for(int j = 0; j < strs[i].length(); j++) c += (strs[i][j] == '0');
+        int incl = solve(strs,i+1,m-c,n-strs[i].size()+c,dp) + 1;
+        return dp[i][m][n] = max(incl,excl);
+    }
+
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        vector<vector<vector<int>>> dp(strs.size(),vector<vector<int>>(m+1,vector<int>(n+1,-1)));
+        return solve(strs,0,m,n,dp);
+    }
+};
