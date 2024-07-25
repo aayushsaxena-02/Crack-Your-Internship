@@ -1,0 +1,27 @@
+T.c -> O(n) , S.c -> O(n)
+
+int minSwaps(vector<int>&nums){
+	    map <int,int> mp;
+	    vector<int> arr = nums;
+	    sort(arr.begin(),arr.end());
+	   
+	    for(int i = 0; i < nums.size(); i++) mp[arr[i]] = i;
+	    int ans = 0, i = 0;
+	    while(i < nums.size()){
+	        int cnt = 0;
+	        if(arr[i] == 0) {
+	            i++;continue;
+	        }
+	        
+	        int idx = i;
+	        while(arr[idx]){
+	            arr[idx] = 0;
+	            cnt++;
+	            idx = mp[nums[idx]];
+	        }
+	        
+	        ans += (cnt-1);
+	        i++;
+	    }
+	    return ans;
+	}
