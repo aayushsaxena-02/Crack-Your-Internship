@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    void dfs(vector<int> adj[],int i,vector<int>& ans,map<int,int>& vis){
+        if(vis[i]) return ;
+        ans.push_back(i);
+        vis[i] = 1;
+        for(auto it : adj[i]) dfs(adj,it,ans,vis);
+    }
+    
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        vector<int> ans;
+        map<int,int> vis;
+        dfs(adj,0,ans,vis);
+        return ans;
+    }
+};
